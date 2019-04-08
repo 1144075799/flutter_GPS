@@ -43,6 +43,14 @@ class _MyHomePageState extends State<MyHomePage> {
       _message=message;
     });
   }
+
+  Future<void> _open()async{
+    await methodChannel.invokeMethod('openGPS');
+  }
+
+  Future<void> _getDate() async{
+    await methodChannel.invokeMethod('getDate');
+  }
   //////// Flutter 调用原生  End  ////////
 
   @override
@@ -66,12 +74,28 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Padding(
               padding: EdgeInsets.all(10.0),
-              child: RaisedButton(
-                color: Colors.blue,
-                textColor: Colors.white,
-                child: Text('检查GPS状态'),
-                onPressed: _inspection,
-              ),
+              child: Column(
+                children: <Widget>[
+                  RaisedButton(
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    child: Text('检查GPS状态'),
+                    onPressed: _inspection,
+                  ),
+                  RaisedButton(
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    child: Text('开关GPS'),
+                    onPressed: _open,
+                  ),
+                  RaisedButton(
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    child: Text('获取经纬度'),
+                    onPressed: _getDate,
+                  ),
+                ],
+              )
             )
           ],
         ),
